@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav.html' %}
+<link rel="stylesheet" href="{% static 'purchase/style.css' %}">
+<div class="container">
+    {% for product in products %}
+        <div class="column">
+            <div class="card">
+                <div class="price">
+                    <sup>${{ product.price }}</sup>
+                </div>
+                <h3>{{ product.name }}</h3>
+                <ul>
+                    <li><span>✔</span> {{ product.credit_grant }} Credits</li>
+                    <li><span>✔</span> {{ product.ben1 }}</li>
+                    <li><span>✔</span> {{ product.ben2 }}</li>
+                    <li><span>✔</span> {{ product.ben3 }}</li>
+                    <li><span>✔</span> {{ product.ben4 }}</li>
+                    <!-- Add more ben fields as needed -->
+                </ul>
+                <form method="post" action="{% url 'purchase' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                    <button type="submit" class="btn">Select</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

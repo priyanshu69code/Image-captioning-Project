@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'glassmorf/style.css' %}">
+    {% include 'nav.html' %}
+    <div class="container">
+        <div class="card">
+            <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3 text-center">
+                        <label for="formFileLg" class="form-label">You have left with {{ credits }} credits</label>
+                        <input class="form-control form-control-lg" id="formFileLg" type="file" accept=".jpg" name="file">
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Genrate Caption</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        <div class="blob"></div>
+
+{% endblock %}
+    
+
